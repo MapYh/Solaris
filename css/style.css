@@ -27,7 +27,7 @@ body {
 
 /*-----The sun--------*/
 
-.thesun {
+/* .thesun {
   height: 25px;
   width: 25px;
   background-color: #ffd029;
@@ -35,10 +35,10 @@ body {
   display: inline-block;
   width: 100dvh;
   height: 100dvh;
-  box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
+  box-shadow: 0px 0px 250px rgba(255, 208, 41, 1);
   position: absolute;
-  left: -1000px;
-}
+  left: -1100px;
+} */
 
 /*-----Titles--------*/
 
@@ -62,6 +62,17 @@ body {
   width: 65dvw;
   margin: 4rem;
   height: 65dvh;
+}
+
+.thesun {
+  background-color: #ffd029;
+  border-radius: 50%;
+  display: inline-block;
+  width: 100dvh;
+  height: 100dvh;
+
+  position: absolute;
+  left: -1100px;
 }
 
 .planets__mercury {
@@ -129,7 +140,7 @@ body {
 
 /*--------Footer--------*/
 
-.footer {
+/* .footer {
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -140,9 +151,7 @@ body {
   color: white;
   font-size: 120%;
   height: 10dvh;
-}
-
-/*-----Second page--------*/
+} */
 
 .information {
   max-width: 35rem;
@@ -181,6 +190,7 @@ body {
   align-items: center;
   margin: 1rem;
 }
+
 .Information__extra {
   display: flex;
   flex-wrap: wrap;
@@ -189,6 +199,18 @@ body {
 .information__section {
   margin: 1rem;
   padding: 2rem;
+}
+
+.information__extra--moons {
+  max-width: 35rem;
+  margin: auto;
+  margin-top: 10rem;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  margin: 1rem;
+  word-wrap: break-word;
 }
 
 /*-----Media queries--------*/
