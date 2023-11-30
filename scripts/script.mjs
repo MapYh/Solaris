@@ -131,19 +131,19 @@ async function getPlanetDescription(number) {
 async function getExtraPlanetInformation(number) {
   let data = await getsSkyBodiesArray();
 
-  extraInformationtitle[0].textContent = `Omkrets`;
+  extraInformationtitle[0].textContent = `OMKRETS`;
   extraInformationValue[0].textContent = data.bodies[number].circumference;
 
-  extraInformationtitle[1].textContent = `Km från solen`;
+  extraInformationtitle[1].textContent = `KM FRÅN SOLEN`;
   extraInformationValue[1].textContent = data.bodies[number].distance;
 
-  extraInformationtitle[2].textContent = `Max temp`;
+  extraInformationtitle[2].textContent = `MAX TEMPERATUR`;
   extraInformationValue[2].textContent = data.bodies[number].temp.day;
 
-  extraInformationtitle[3].textContent = `Min temp`;
+  extraInformationtitle[3].textContent = `MIN TEMPERATUR`;
   extraInformationValue[3].textContent = data.bodies[number].temp.night;
 
-  extraInformationtitle[4].textContent = `Månar`;
+  extraInformationtitle[4].textContent = `MÅNAR`;
 }
 
 async function getPlanetMoons(number) {

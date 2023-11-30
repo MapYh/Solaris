@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto+Condensed:wght@300&family=Secular+One&display=swap");
+
 /*-----Site wide styles--------*/
 * {
   margin: 0;
@@ -8,13 +10,7 @@
 body {
   width: 100%;
   height: 100%;
-  background: rgb(5, 57, 175);
-  background: linear-gradient(
-    90deg,
-    rgba(5, 57, 175, 1) 0%,
-    rgb(0, 10, 85) 50%,
-    rgb(29, 14, 58) 100%
-  );
+  background: linear-gradient(90deg, #0c164d 0%, #190b22 100%);
 }
 
 .wrapper {
@@ -22,38 +18,52 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: center;
 }
-
-/*-----The sun--------*/
-
-/* .thesun {
-  height: 25px;
-  width: 25px;
-  background-color: #ffd029;
-  border-radius: 50%;
-  display: inline-block;
-  width: 100dvh;
-  height: 100dvh;
-  box-shadow: 0px 0px 250px rgba(255, 208, 41, 1);
-  position: absolute;
-  left: -1100px;
-} */
 
 /*-----Titles--------*/
 
 .titles {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: end;
   margin: 4rem;
+}
+
+.titles__main {
+  width: 608px;
+  height: 60px;
+
+  font-family: "Secular One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100%;
+  text-align: right;
+  letter-spacing: 0.09em;
+
+  color: #ffffff;
+}
+
+.titles__second-title {
+  width: 608px;
+  height: 24px;
+
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  text-align: right;
+  letter-spacing: 0.6em;
+
+  color: #ffd029;
 }
 
 /*-----Planets--------*/
 
 .planets {
-  padding: 1rem;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -65,42 +75,42 @@ body {
 }
 
 .thesun {
-  background-color: #ffd029;
+  background: #ffd029;
   border-radius: 50%;
   display: inline-block;
   width: 100dvh;
   height: 100dvh;
-
+  box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
   position: absolute;
-  left: -1100px;
+  left: -900px;
 }
 
 .planets__mercury {
-  height: 13px;
-  width: 13px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   display: inline-block;
   background: #7a91a7;
 }
 
 .planets__venus {
-  height: 25px;
-  width: 25px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: inline-block;
   background: #e7cdcd;
 }
 .planets__earth {
-  height: 25px;
-  width: 25px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: inline-block;
   background: #428ed4;
 }
 
 .planets__mars {
-  height: 13px;
-  width: 13px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   display: inline-block;
   background: #ef5f5f;
@@ -110,29 +120,48 @@ body {
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  display: inline-block;
   background: #e29468;
 }
 
 .planets__saturn {
-  height: 100px;
-  width: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  width: 144px;
+  height: 144px;
   border-radius: 50%;
   display: inline-block;
   background: #c7aa72;
 }
 
+.planets__combined-saturn {
+  position: relative;
+}
+
+.planets__saturn__ring {
+  position: absolute;
+  top: 70px;
+  left: -2rem;
+
+  width: 218.23px;
+  height: 5.5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(-30deg);
+}
+
 .planets__uranus {
-  height: 50px;
-  width: 50px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
   display: inline-block;
   background: #c9d4f1;
 }
 
 .planets__neptune {
-  height: 50px;
-  width: 50px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
   display: inline-block;
   background: #7a91a7;
@@ -141,9 +170,15 @@ body {
 /*--------Footer--------*/
 
 .information {
-  max-width: 35rem;
-  margin: auto;
-  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 16px;
+
+  width: 640px;
+  height: 100px;
 }
 
 .information--styling {
@@ -155,27 +190,70 @@ body {
   justify-content: end;
   align-items: center;
   margin: 1rem;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  font-family: "Secular One";
+  font-style: normal;
+  font-weight: 400;
 }
 
 .information__title {
   display: flex;
   justify-content: start;
   align-items: center;
-  margin: 1rem;
+  width: 625px;
+  height: 60px;
+  font-family: "Secular One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0.09em;
+  padding-bottom: 2rem;
+  color: #ffffff;
 }
 
 .information__title-two {
   display: flex;
   justify-content: start;
   align-items: center;
-  margin: 1rem;
+  width: 625px;
+  height: 24px;
+  padding-bottom: 2rem;
+  font-family: "Lora";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.6em;
+
+  color: #ffd029;
 }
 
 .information__paragraph {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   display: flex;
   justify-content: start;
   align-items: center;
-  margin: 1rem;
+
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 170%;
+
+  color: #ffffff;
+}
+
+.information__line {
+  width: 592px;
+  height: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .Information__extra {
@@ -184,8 +262,34 @@ body {
 }
 
 .information__section {
-  margin: 1rem;
-  padding: 2rem;
+  padding-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.Information__extra__title {
+  width: 304px;
+  height: 18px;
+  font-family: "Secular One";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0.09em;
+  color: #ffffff;
+}
+
+.information__extra__value {
+  width: 304px;
+  height: 18px;
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 170%;
+  letter-spacing: 0.16em;
+
+  color: #ffffff;
 }
 
 .information__extra--moons {
@@ -198,6 +302,17 @@ body {
   flex-direction: column;
   margin: 1rem;
   word-wrap: break-word;
+  width: 640px;
+  height: 22px;
+
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 170%;
+  letter-spacing: 0.16em;
+
+  color: #ffffff;
 }
 
 /*-----Media queries--------*/
@@ -216,21 +331,8 @@ body {
   }
 }
 
-@media only screen and (max-width: 700px) {
-  body {
-    background: rgb(5, 57, 175);
-  }
-}
-
 @media only screen and (max-width: 1050px) {
   .planets {
     flex-wrap: wrap;
   }
 }
-
-/* @media only screen and (max-width: 610px) {
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-} */
