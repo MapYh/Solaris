@@ -2,6 +2,7 @@
 
 let planets = document.querySelector(".planets");
 let information = document.querySelector(".information");
+information.style.display = "none";
 
 let closeThePage = document.querySelector(".information__close-x");
 closeThePage.addEventListener("click", () => {
@@ -10,12 +11,11 @@ closeThePage.addEventListener("click", () => {
 
 let theSun = document.querySelector(".thesun");
 theSun.addEventListener("click", () => {
-  planets.getPlanetInformation(0);
+  getPlanetInformation(0);
 });
 
 let mercury = document.querySelector(".planets__mercury");
 mercury.addEventListener("click", () => {
-  information.classList.remove("hide");
   getPlanetInformation(1);
 });
 
@@ -101,6 +101,8 @@ async function getsSkyBodiesArray() {
 }
 
 async function getPlanetInformation(number) {
+  planets.style.display = "none";
+  information.style.display = "block";
   await getPlanetTitle(number);
   await getPlanetLatinName(number);
   await getPlanetDescription(number);

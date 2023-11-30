@@ -140,19 +140,6 @@ body {
 
 /*--------Footer--------*/
 
-/* .footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-}
-
-.footer--styling {
-  color: white;
-  font-size: 120%;
-  height: 10dvh;
-} */
-
 .information {
   max-width: 35rem;
   margin: auto;
