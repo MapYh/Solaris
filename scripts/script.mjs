@@ -15,6 +15,8 @@ let planets = document.querySelector(".planets");
 let information = document.querySelector(".information");
 information.style.display = "none";
 
+let stars = document.querySelector(".stars");
+
 let closeThePage = document.querySelector(".information__close-x");
 closeThePage.addEventListener("click", () => {
   location.href = "index.html";
@@ -154,6 +156,9 @@ async function getPlanetMoons(number, data) {
   planetMoons.textContent = stringOfMoons.join(`, `);
   /*Sets the display to block so that all the information can be loaded onto the page.*/
   information.style.display = "block";
+  stars.style.background =
+    "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png)";
+  repeat;
 }
 /*Adds the closing x to the page.*/
 function placeClosingX() {

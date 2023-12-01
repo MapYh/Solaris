@@ -8,10 +8,15 @@
   box-sizing: border-box;
 }
 
-body {
+html {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, #0c164d 0%, #190b22 100%);
+}
+
+.stars {
+  width: 100%;
+  height: 100%;
 }
 
 .wrapper {
@@ -337,3 +342,5 @@ body {
     flex-wrap: wrap;
   }
 }
+
+/*----- Animations --------*/
