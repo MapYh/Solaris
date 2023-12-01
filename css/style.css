@@ -14,9 +14,25 @@ html {
   background: linear-gradient(90deg, #0c164d 0%, #190b22 100%);
 }
 
-.stars {
-  width: 100%;
-  height: 100%;
+.star-template {
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background: #ffffff;
+  opacity: 0.3;
+  filter: blur(2px);
+  animation: fade-in-out 7.5s infinite alternate;
+}
+
+@keyframes fade-in-out {
+  from {
+    opacity: 0.9;
+    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 5px 1px;
+  }
+  to {
+    opacity: 0.3;
+    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 0px 0px;
+  }
 }
 
 .wrapper {
@@ -344,3 +360,14 @@ html {
 }
 
 /*----- Animations --------*/
+
+@keyframes fade-in-out {
+  from {
+    opacity: 0.9;
+    box-shadow: rgba(255, 68, 0, 0.7) 0px 0px 5px 1px;
+  }
+  to {
+    opacity: 0.3;
+    box-shadow: rgba(151, 0, 138, 0.7) 0px 0px 0px 0px;
+  }
+}

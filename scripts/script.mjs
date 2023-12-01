@@ -7,15 +7,13 @@ let planetMoons = document.querySelector(".information__extra--moons");
 let extraPlanetInformation = document.querySelectorAll(
   ".information__extra-value"
 );
-
-/*-------Click events---------*/
-
-/*Click events for all the different planets and the closing x*/
+let starsInBackground = document.querySelector(".stars");
 let planets = document.querySelector(".planets");
 let information = document.querySelector(".information");
 information.style.display = "none";
+/*-------Click events---------*/
 
-let stars = document.querySelector(".stars");
+/*Click events for all the different planets and the closing x*/
 
 let closeThePage = document.querySelector(".information__close-x");
 closeThePage.addEventListener("click", () => {
@@ -138,7 +136,7 @@ distance, temp in the day and temp in the night.*/
 async function getExtraPlanetInformation(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
-  console.log(data.bodies[number]);
+
   extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
   extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
   extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
@@ -156,13 +154,34 @@ async function getPlanetMoons(number, data) {
   planetMoons.textContent = stringOfMoons.join(`, `);
   /*Sets the display to block so that all the information can be loaded onto the page.*/
   information.style.display = "block";
-  stars.style.background =
-    "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png)";
-  repeat;
+  createStars();
 }
 /*Adds the closing x to the page.*/
 function placeClosingX() {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
   closingx.textContent = "X";
+}
+
+//Creates all the background stars.
+function createStars() {
+  for (let i = 0; i < 200; i++) {
+    //Creating the element for each star.
+    const star = document.createElement("div");
+    //Adding styling for each star.
+    star.className = "star-template";
+
+    //Adding random positoning to the star.
+    star.style.left = `${Math.floor(Math.random() * 100)}%`;
+    star.style.top = `${Math.floor(Math.random() * 100)}%`;
+
+    //adding random size to the star.
+    star.style.width = `${Math.floor(Math.random() * 10)}px`;
+    star.style.height = `${Math.floor(Math.random() * 10)}px`;
+
+    //Random animation delay to the star.
+    star.style.animationDelay = `${Math.floor(Math.random() * 10)}s`;
+
+    starsInBackground.appendChild(star);
+  }
 }
