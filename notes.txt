@@ -50,3 +50,12 @@ diplay: flex eller toggle en klass.
 
 Andra sidan 
 tre ringar, 
+
+
+
+Kvar att göra:
+stjärnor plus animering.
+planet till varje info sida.
+animering till planeter och skuggor.
+fixa js koden.
+Långsam "rendering" av texten.

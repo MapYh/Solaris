@@ -1,3 +1,12 @@
+let closingx = document.querySelector(".information__close-x");
+let title = document.querySelector(".information__title");
+let titleTwo = document.querySelector(".information__title-two");
+let paragraph = document.querySelector(".information__paragraph");
+let moons = document.querySelector(".information__extra--moons");
+let extraInformationValue = document.querySelectorAll(
+  ".information__extra__value"
+);
+
 /*-------Click events---------*/
 
 let planets = document.querySelector(".planets");
@@ -54,18 +63,6 @@ neptune.addEventListener("click", (e) => {
   getPlanetInformation(8);
 });
 
-let closingx = document.querySelector(".information__close-x");
-let title = document.querySelector(".information__title");
-let titleTwo = document.querySelector(".information__title-two");
-let paragraph = document.querySelector(".information__paragraph");
-let moons = document.querySelector(".information__extra--moons");
-let extraInformationtitle = document.querySelectorAll(
-  ".information__extra__title"
-);
-let extraInformationValue = document.querySelectorAll(
-  ".information__extra__value"
-);
-
 /*Gets the api key*/
 async function getKeys() {
   /*
@@ -83,7 +80,7 @@ async function getKeys() {
   let keydata = await basekeys.json();
   return keydata.key;
 }
-
+/* Getsthe array for all the planets, and gets the api key. */
 async function getsSkyBodiesArray() {
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
@@ -95,7 +92,7 @@ async function getsSkyBodiesArray() {
     }
   );
 
-  let data = await resp.json();
+  let data = resp.json();
 
   return data;
 }
@@ -103,51 +100,38 @@ async function getsSkyBodiesArray() {
 async function getPlanetInformation(number) {
   planets.style.display = "none";
   information.style.display = "block";
-  await getPlanetTitle(number);
-  await getPlanetLatinName(number);
-  await getPlanetDescription(number);
-  await getExtraPlanetInformation(number);
-  getPlanetMoons(number);
+  getPlanetTitle(number);
   placeClosingX();
 }
 
 async function getPlanetTitle(number) {
   let data = await getsSkyBodiesArray();
   title.textContent = data.bodies[number].name;
-  return data;
+  getPlanetLatinName(number, data);
 }
 
-async function getPlanetLatinName(number) {
-  let data = await getsSkyBodiesArray();
+async function getPlanetLatinName(number, data) {
   titleTwo.textContent = data.bodies[number].latinName;
-  return data;
+  getPlanetDescription(number, data);
 }
 
-async function getPlanetDescription(number) {
-  let data = await getsSkyBodiesArray();
+async function getPlanetDescription(number, data) {
   paragraph.textContent = data.bodies[number].desc;
+  getExtraPlanetInformation(number, data);
 }
 
 async function getExtraPlanetInformation(number) {
   let data = await getsSkyBodiesArray();
 
-  extraInformationtitle[0].textContent = `OMKRETS`;
   extraInformationValue[0].textContent = data.bodies[number].circumference;
-
-  extraInformationtitle[1].textContent = `KM FRÅN SOLEN`;
   extraInformationValue[1].textContent = data.bodies[number].distance;
-
-  extraInformationtitle[2].textContent = `MAX TEMPERATUR`;
   extraInformationValue[2].textContent = data.bodies[number].temp.day;
-
-  extraInformationtitle[3].textContent = `MIN TEMPERATUR`;
   extraInformationValue[3].textContent = data.bodies[number].temp.night;
 
-  extraInformationtitle[4].textContent = `MÅNAR`;
+  getPlanetMoons(number, data);
 }
 
-async function getPlanetMoons(number) {
-  let data = await getsSkyBodiesArray();
+async function getPlanetMoons(number, data) {
   let stringOfMoons = data.bodies[number].moons;
   moons.textContent = stringOfMoons.join(`, `);
 }
