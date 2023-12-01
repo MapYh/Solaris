@@ -32,7 +32,7 @@ body {
   margin: 4rem;
 }
 
-.titles__main {
+.titles__main-title {
   width: 608px;
   height: 60px;
 
@@ -168,7 +168,7 @@ body {
   background: #7a91a7;
 }
 
-/*--------Footer--------*/
+/*-------- Information --------*/
 
 .information {
   display: flex;
@@ -186,7 +186,7 @@ body {
   color: white;
 }
 
-.information__close {
+.information__close-x {
   display: flex;
   justify-content: end;
   align-items: center;
@@ -280,7 +280,7 @@ body {
   color: #ffffff;
 }
 
-.information__extra__value {
+.information__extra-value {
   width: 304px;
   height: 18px;
   font-family: "Roboto Condensed";

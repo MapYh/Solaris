@@ -1,5 +1,4 @@
 /*-------Variables---------*/
-
 let closingx = document.querySelector(".information__close-x");
 let title = document.querySelector(".information__title");
 let planetLatinName = document.querySelector(".information__title-two");
@@ -14,7 +13,6 @@ let extraPlanetInformation = document.querySelectorAll(
 /*Click events for all the different planets and the closing x*/
 let planets = document.querySelector(".planets");
 let information = document.querySelector(".information");
-/*Hides the information page*/
 information.style.display = "none";
 
 let closeThePage = document.querySelector(".information__close-x");
@@ -88,7 +86,7 @@ async function getKeys() {
 }
 /* Gets the array for all the planets, and calls getKeys function to get the api key. */
 async function getsSkyBodiesArray() {
-  /*Uses the getKeys function and fetches the array of planets*/
+  /*Uses the getKeys function and g*/
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
     {
@@ -136,12 +134,13 @@ async function getPlanetDescription(number, data) {
 /*Gets the planets extra information, ass, circumference, 
 distance, temp in the day and temp in the night.*/
 async function getExtraPlanetInformation(number, data) {
-  /*The reason for dividing up the code in different functions is so that it is easier to understad what every 
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
-  extraPlanetInformation[0].textContent = data.bodies[number].circumference;
-  extraPlanetInformation[1].textContent = data.bodies[number].distance;
-  extraPlanetInformation[2].textContent = data.bodies[number].temp.day;
-  extraPlanetInformation[3].textContent = data.bodies[number].temp.night;
+  console.log(data.bodies[number]);
+  extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
+  extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
+  extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
+  extraPlanetInformation[3].textContent = `${data.bodies[number].temp.night}C`;
 
   getPlanetMoons(number, data);
 }
