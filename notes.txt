@@ -43,7 +43,7 @@ byt färg på solen och gör tre till.
 CSS:
 Solen en cirkel
 när skärmen blir mindre än x.
-vill jag även att informationen och dom oilka planterna ska komma under solen
+vill jag även att informationen och dom olika planterna ska komma under solen
 och när man klickar på en planet länkas man ner åt på sidan.
 hardkoda html och sen med media queries när skärmen är liten 
 diplay: flex eller toggle en klass. 
@@ -59,3 +59,4 @@ planet till varje info sida.
 animering till planeter och skuggor.
 fixa js koden.
 Långsam "rendering" av texten.
+error handeling.

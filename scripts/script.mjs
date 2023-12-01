@@ -1,16 +1,20 @@
+/*-------Variables---------*/
+
 let closingx = document.querySelector(".information__close-x");
 let title = document.querySelector(".information__title");
-let titleTwo = document.querySelector(".information__title-two");
-let paragraph = document.querySelector(".information__paragraph");
-let moons = document.querySelector(".information__extra--moons");
-let extraInformationValue = document.querySelectorAll(
-  ".information__extra__value"
+let planetLatinName = document.querySelector(".information__title-two");
+let planetParagraph = document.querySelector(".information__paragraph");
+let planetMoons = document.querySelector(".information__extra--moons");
+let extraPlanetInformation = document.querySelectorAll(
+  ".information__extra-value"
 );
 
 /*-------Click events---------*/
 
+/*Click events for all the different planets and the closing x*/
 let planets = document.querySelector(".planets");
 let information = document.querySelector(".information");
+/*Hides the information page*/
 information.style.display = "none";
 
 let closeThePage = document.querySelector(".information__close-x");
@@ -63,6 +67,8 @@ neptune.addEventListener("click", (e) => {
   getPlanetInformation(8);
 });
 
+/*-------Functions---------*/
+
 /*Gets the api key*/
 async function getKeys() {
   /*
@@ -80,8 +86,9 @@ async function getKeys() {
   let keydata = await basekeys.json();
   return keydata.key;
 }
-/* Getsthe array for all the planets, and gets the api key. */
+/* Gets the array for all the planets, and calls getKeys function to get the api key. */
 async function getsSkyBodiesArray() {
+  /*Uses the getKeys function and fetches the array of planets*/
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
     {
@@ -96,46 +103,62 @@ async function getsSkyBodiesArray() {
 
   return data;
 }
-
+/*Function to get the planet information, 
+collecting all the different functions into one function.*/
 async function getPlanetInformation(number) {
-  planets.style.display = "none";
-  information.style.display = "block";
-  getPlanetTitle(number);
   placeClosingX();
+  planets.style.display = "none";
+  getPlanetTitle(number);
 }
-
+/*Function to fetch the bodies array and to add the title of the planet.
+Also calls the next function to add all the relevant information to the page.*/
 async function getPlanetTitle(number) {
   let data = await getsSkyBodiesArray();
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
   title.textContent = data.bodies[number].name;
   getPlanetLatinName(number, data);
 }
-
+/*Gets the planets latin name. And calls the next function*/
 async function getPlanetLatinName(number, data) {
-  titleTwo.textContent = data.bodies[number].latinName;
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+  planetLatinName.textContent = data.bodies[number].latinName;
   getPlanetDescription(number, data);
 }
-
+/*Gets the planets description. And calls the next function*/
 async function getPlanetDescription(number, data) {
-  paragraph.textContent = data.bodies[number].desc;
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+  planetParagraph.textContent = data.bodies[number].desc;
   getExtraPlanetInformation(number, data);
 }
-
-async function getExtraPlanetInformation(number) {
-  let data = await getsSkyBodiesArray();
-
-  extraInformationValue[0].textContent = data.bodies[number].circumference;
-  extraInformationValue[1].textContent = data.bodies[number].distance;
-  extraInformationValue[2].textContent = data.bodies[number].temp.day;
-  extraInformationValue[3].textContent = data.bodies[number].temp.night;
+/*Gets the planets extra information, ass, circumference, 
+distance, temp in the day and temp in the night.*/
+async function getExtraPlanetInformation(number, data) {
+  /*The reason for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+  extraPlanetInformation[0].textContent = data.bodies[number].circumference;
+  extraPlanetInformation[1].textContent = data.bodies[number].distance;
+  extraPlanetInformation[2].textContent = data.bodies[number].temp.day;
+  extraPlanetInformation[3].textContent = data.bodies[number].temp.night;
 
   getPlanetMoons(number, data);
 }
-
+/*Gets the planets moon names.*/
 async function getPlanetMoons(number, data) {
-  let stringOfMoons = data.bodies[number].moons;
-  moons.textContent = stringOfMoons.join(`, `);
-}
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
 
+  /*Takes the array of moons an creates a string for display purposes.*/
+  let stringOfMoons = data.bodies[number].moons;
+  planetMoons.textContent = stringOfMoons.join(`, `);
+  /*Sets the display to block so that all the information can be loaded onto the page.*/
+  information.style.display = "block";
+}
+/*Adds the closing x to the page.*/
 function placeClosingX() {
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
   closingx.textContent = "X";
 }
