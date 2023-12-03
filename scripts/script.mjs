@@ -9,6 +9,7 @@ let extraPlanetInformation = document.querySelectorAll(
 );
 let starsInBackground = document.querySelector(".stars");
 let planets = document.querySelector(".planets");
+let planetInfoPage = document.querySelector(".thesun");
 let information = document.querySelector(".information");
 information.style.display = "none";
 /*-------Click events---------*/
@@ -65,6 +66,17 @@ neptune.addEventListener("click", (e) => {
   getPlanetInformation(8);
 });
 
+let planetColors = [
+  "#ffd029",
+  "#7a91a7",
+  "#e7cdcd",
+  "#428ed4",
+  "#ef5f5f",
+  "#e29468",
+  "#c7aa72",
+  "#c9d4f1",
+  "#7a91a7",
+];
 /*-------Functions---------*/
 
 /*Gets the api key*/
@@ -118,22 +130,31 @@ async function getPlanetTitle(number) {
   getPlanetLatinName(number, data);
 }
 /*Gets the planets latin name. And calls the next function*/
-async function getPlanetLatinName(number, data) {
+function getPlanetLatinName(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
   planetLatinName.textContent = data.bodies[number].latinName;
   getPlanetDescription(number, data);
 }
 /*Gets the planets description. And calls the next function*/
-async function getPlanetDescription(number, data) {
+function getPlanetDescription(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
   planetParagraph.textContent = data.bodies[number].desc;
+  planetInfoPage.style.background = planetColors[number];
+  getPlanetForInfoPage(number, data);
+}
+/*Get the planets color for the info page display. And calls the next function*/
+function getPlanetForInfoPage(number, data) {
+  planetInfoPage.style.background = planetColors[number];
+  planetInfoPage.style.left = "-1000px";
+  planetInfoPage.style.top = "150px";
   getExtraPlanetInformation(number, data);
 }
+
 /*Gets the planets extra information, ass, circumference, 
 distance, temp in the day and temp in the night.*/
-async function getExtraPlanetInformation(number, data) {
+function getExtraPlanetInformation(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
 
@@ -145,7 +166,7 @@ async function getExtraPlanetInformation(number, data) {
   getPlanetMoons(number, data);
 }
 /*Gets the planets moon names.*/
-async function getPlanetMoons(number, data) {
+function getPlanetMoons(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
 

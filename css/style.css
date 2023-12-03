@@ -24,17 +24,6 @@ html {
   animation: fade-in-out 7.5s infinite alternate;
 }
 
-@keyframes fade-in-out {
-  from {
-    opacity: 0.9;
-    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 5px 1px;
-  }
-  to {
-    opacity: 0.3;
-    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 0px 0px;
-  }
-}
-
 .wrapper {
   min-width: 600px;
   display: flex;
@@ -467,10 +456,10 @@ html {
 @keyframes fade-in-out {
   from {
     opacity: 0.9;
-    box-shadow: rgba(255, 68, 0, 0.7) 0px 0px 5px 1px;
+    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 5px 1px;
   }
   to {
     opacity: 0.3;
-    box-shadow: rgba(151, 0, 138, 0.7) 0px 0px 0px 0px;
+    box-shadow: rgba(255, 255, 255, 0.7) 0px 0px 0px 0px;
   }
 }
