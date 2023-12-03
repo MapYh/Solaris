@@ -185,7 +185,7 @@ function getPlanetMoons(number, data) {
   if (!(stringOfMoons.length === 0)) {
     planetMoons.textContent = stringOfMoons.join(`, `);
   } else {
-    planetMoons.innerHTML = "This planet has no moons.";
+    planetMoons.innerHTML = "Den här planeten har ingen måne.";
   }
 
   /*Sets the display to block so that all the information can be loaded onto the page.*/
