@@ -107,12 +107,33 @@ html {
   left: -900px;
 }
 
+.thesun:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(39, 40, 41, 1) 0%,
+    rgba(255, 208, 41, 1) 100%
+  );
+  box-shadow: -1px 3px 50px -16px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
+}
+
 .planets__mercury {
   width: 14px;
   height: 14px;
   border-radius: 50%;
   display: inline-block;
   background: #7a91a7;
+}
+
+.planets__mercury:hover {
+  background: linear-gradient(
+    311deg,
+    rgba(102, 110, 119, 1) 0%,
+    rgba(122, 145, 167, 1) 71%,
+    rgba(200, 209, 218, 1) 100%
+  );
+  box-shadow: -1px 3px 40px 10px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
 }
 
 .planets__venus {
@@ -122,12 +143,35 @@ html {
   display: inline-block;
   background: #e7cdcd;
 }
+
+.planets__venus:hover {
+  background: linear-gradient(
+    311deg,
+    rgba(231, 205, 205, 1) 0%,
+    rgba(231, 205, 205, 1) 71%,
+    rgba(227, 221, 221, 1) 100%
+  );
+  box-shadow: -1px 3px 50px 0px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
+}
+
 .planets__earth {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   display: inline-block;
   background: #428ed4;
+}
+
+.planets__earth:hover {
+  background: linear-gradient(
+    311deg,
+    rgba(106, 118, 129, 1) 0%,
+    rgba(66, 142, 212, 1) 71%,
+    rgba(198, 209, 219, 1) 100%
+  );
+  box-shadow: -1px 3px 50px 0px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
 }
 
 .planets__mars {
@@ -138,11 +182,33 @@ html {
   background: #ef5f5f;
 }
 
+.planets__mars:hover {
+  background: linear-gradient(
+    311deg,
+    rgba(115, 95, 85, 1) 0%,
+    rgba(239, 95, 95, 1) 71%,
+    rgba(232, 215, 215, 1) 100%
+  );
+  box-shadow: -1px 3px 40px 10px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
+}
+
 .planets__jupiter {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   background: #e29468;
+}
+
+.planets__jupiter:hover {
+  background: linear-gradient(
+    311deg,
+    rgb(47, 45, 44) 0%,
+    rgba(226, 148, 104, 1) 71%,
+    rgba(232, 210, 197, 1) 100%
+  );
+  box-shadow: -1px 3px 50px -16px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
 }
 
 .planets__saturn {
@@ -155,6 +221,17 @@ html {
   border-radius: 50%;
   display: inline-block;
   background: #c7aa72;
+}
+
+.planets__saturn:hover {
+  background: linear-gradient(
+    311deg,
+    rgb(98, 90, 75) 0%,
+    rgba(199, 170, 114, 1) 71%,
+    rgba(207, 199, 184, 1) 100%
+  );
+  box-shadow: -1px 3px 50px -16px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
 }
 
 .planets__combined-saturn {
@@ -181,12 +258,34 @@ html {
   background: #c9d4f1;
 }
 
+.planets__uranus:hover {
+  background: linear-gradient(
+    311deg,
+    rgb(114, 136, 158) 0%,
+    rgba(201, 212, 241, 1) 71%,
+    rgba(193, 198, 210, 1) 100%
+  );
+  box-shadow: -1px 3px 50px -16px #ffffff;
+  transform: translate3d(0px, -2px, 0px);
+}
+
 .planets__neptune {
   width: 66px;
   height: 66px;
   border-radius: 50%;
   display: inline-block;
   background: #7a91a7;
+}
+
+.planets__neptune:hover {
+  background: linear-gradient(
+    311deg,
+    rgba(77, 92, 107, 1) 0%,
+    rgba(122, 145, 167, 1) 71%,
+    rgba(163, 186, 208, 1) 100%
+  );
+  box-shadow: -1px 3px 50px -16px #9b9b9b;
+  transform: translate3d(0px, -2px, 0px);
 }
 
 /*-------- Information --------*/
@@ -206,16 +305,20 @@ html {
 .information--styling {
   color: white;
 }
-
-.information__close-x {
+.information__close-x-flex {
   display: flex;
   justify-content: end;
   align-items: center;
+}
+
+.information__close-x {
+  display: inline-block;
+  cursor: pointer;
+  width: 3%;
+  height: 3%;
+  justify-content: end;
+  align-items: center;
   margin: 1rem;
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
   font-family: "Secular One";
   font-style: normal;
   font-weight: 400;

@@ -160,7 +160,7 @@ async function getPlanetMoons(number, data) {
 function placeClosingX() {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
-  closingx.textContent = "X";
+  closingx.textContent = "x";
 }
 
 //Creates all the background stars.
