@@ -7,11 +7,15 @@ let planetMoons = document.querySelector(".information__extra--moons");
 let extraPlanetInformation = document.querySelectorAll(
   ".information__extra-value"
 );
+let planetrings = document.querySelector(".outer");
 let starsInBackground = document.querySelector(".stars");
 let planets = document.querySelector(".planets");
-let planetInfoPage = document.querySelector(".thesun");
+let planetInfoPage = document.querySelector(".innerring");
+let planetInfoPageOuterRing = document.querySelector(".outer");
+
 let information = document.querySelector(".information");
 information.style.display = "none";
+
 /*-------Click events---------*/
 
 /*Click events for all the different planets and the closing x*/
@@ -67,15 +71,15 @@ neptune.addEventListener("click", (e) => {
 });
 
 let planetColors = [
-  "255, 208, 41, 100",
-  "122, 145, 167",
-  "231, 205, 205",
-  "66, 142, 212",
-  "239, 95, 95",
-  "226, 148, 104",
-  "199, 170, 114",
-  "201, 212, 241",
-  "122, 145, 167",
+  "#ffd029",
+  "#7a91a7",
+  "#e7cdcd",
+  "#428ed4",
+  "#ef5f5f",
+  "#e29468",
+  "#c7aa72",
+  "#c9d4f1",
+  "#7a91a7",
 ];
 
 /*-------Functions---------*/
@@ -125,15 +129,11 @@ async function getsSkyBodiesArray() {
 /*Function to fetch the bodies array and to add the title of the planet.
 Also calls the next function to add all the relevant information to the page.*/
 async function getPlanetTitle(number) {
-  try {
-    let data = await getsSkyBodiesArray();
-    /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  let data = await getsSkyBodiesArray();
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
     function does, and to find possible errors.*/
-    title.textContent = data.bodies[number].name;
-    getPlanetLatinName(number, data);
-  } catch {
-    console.log("Error, Could not fetch the API bodies.");
-  }
+  title.textContent = data.bodies[number].name;
+  getPlanetLatinName(number, data);
 }
 /*Gets the planets latin name. And calls the next function*/
 function getPlanetLatinName(number, data) {
@@ -148,20 +148,17 @@ function getPlanetDescription(number, data) {
   function does, and to find possible errors.*/
 
   planetParagraph.textContent = data.bodies[number].desc;
-  planetInfoPage.style.background = planetColors[number];
   getPlanetForInfoPage(number, data);
 }
 /*Get the planets color for the info page display. And calls the next function*/
 function getPlanetForInfoPage(number, data) {
-  /* theSun.removeEventListener("click", thesunfunc); */
-  /* ${ rgba(planetColors[number], 0.5) }  */
-  /* console.log(planetColors[number]); */
-  planetInfoPage.classList.replace("thesun", "infopageplanet");
-  planetInfoPage.style.background = `rgb(${planetColors[number]})`;
+  planetrings.style.display = "block";
+  planetInfoPage.style.background = planetColors[number];
 
-  planetInfoPage.style.left = "-1000px";
-  planetInfoPage.style.top = "150px";
-
+  planetInfoPageOuterRing.style.left = "-600px";
+  planetInfoPageOuterRing.style.top = "220px";
+  planetInfoPageOuterRing.style.width = "900px";
+  planetInfoPageOuterRing.style.height = "900px";
   getExtraPlanetInformation(number, data);
 }
 
@@ -188,7 +185,6 @@ function getPlanetMoons(number, data) {
   if (!(stringOfMoons.length === 0)) {
     planetMoons.textContent = stringOfMoons.join(`, `);
   } else {
-    console.log(true);
     planetMoons.innerHTML = "This planet has no moons.";
   }
 

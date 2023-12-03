@@ -17,7 +17,7 @@ html {
 .star-template {
   position: absolute;
   border-radius: 50%;
-  z-index: -1;
+  z-index: -5;
   background: #ffffff;
   opacity: 0.3;
   filter: blur(2px);
@@ -85,15 +85,6 @@ html {
   height: 65dvh;
 }
 
-.infopageplanet {
-  border-radius: 50%;
-  display: inline-block;
-  width: 100dvh;
-  height: 100dvh;
-  position: absolute;
-  left: -900px;
-}
-
 .thesun {
   background: #ffd029;
   border-radius: 50%;
@@ -103,6 +94,24 @@ html {
   box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
   position: absolute;
   left: -900px;
+  top: -5px;
+}
+
+.outer {
+  display: none;
+  background-color: #0c164d;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.innerring {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  border: 80px solid rgb(15, 21, 85);
+  border-radius: 50%;
 }
 
 .thesun:hover {
