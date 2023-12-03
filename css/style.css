@@ -253,17 +253,6 @@ html {
   transform: rotate(-30deg);
 }
 
-/* .planets__saturn__ring:hover {
-  background: linear-gradient(
-    311deg,
-    rgb(98, 90, 75) 0%,
-    rgba(199, 170, 114, 1) 71%,
-    rgba(207, 199, 184, 1) 100%
-  );
-  box-shadow: -1px 3px 50px -16px #ffffff;
-  transform: translate3d(0px, -2px, 0px);
-}
- */
 .planets__uranus {
   width: 66px;
   height: 66px;
