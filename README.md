@@ -1,1 +1,1 @@
-Link to githubpages: https://mapyh.github.io/Solaris/
+Link to githubpages:
