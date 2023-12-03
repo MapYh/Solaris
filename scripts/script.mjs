@@ -67,16 +67,17 @@ neptune.addEventListener("click", (e) => {
 });
 
 let planetColors = [
-  "#ffd029",
-  "#7a91a7",
-  "#e7cdcd",
-  "#428ed4",
-  "#ef5f5f",
-  "#e29468",
-  "#c7aa72",
-  "#c9d4f1",
-  "#7a91a7",
+  "255, 208, 41, 100",
+  "122, 145, 167",
+  "231, 205, 205",
+  "66, 142, 212",
+  "239, 95, 95",
+  "226, 148, 104",
+  "199, 170, 114",
+  "201, 212, 241",
+  "122, 145, 167",
 ];
+
 /*-------Functions---------*/
 
 /*Gets the api key*/
@@ -86,48 +87,53 @@ async function getKeys() {
   There would be a fetch to get the key 
   every time i need to use the api.
   */
-  let basekeys = await fetch(
-    "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
-    {
-      method: `post`,
-    }
-  );
+  try {
+    let basekeys = await fetch(
+      "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
+      {
+        method: `post`,
+      }
+    );
 
-  let keydata = await basekeys.json();
-  return keydata.key;
+    let keydata = await basekeys.json();
+    return keydata.key;
+  } catch {
+    console.log("Could not get API key.");
+  }
 }
 /* Gets the array for all the planets, and calls getKeys function to get the api key. */
 async function getsSkyBodiesArray() {
   /*Uses the getKeys function and g*/
-  let resp = await fetch(
-    "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
-    {
-      method: `GET`,
-      headers: {
-        "x-zocom": `${await getKeys()}`,
-      },
-    }
-  );
+  try {
+    let resp = await fetch(
+      "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
+      {
+        method: `GET`,
+        headers: {
+          "x-zocom": `${await getKeys()}`,
+        },
+      }
+    );
 
-  let data = resp.json();
+    let data = resp.json();
 
-  return data;
-}
-/*Function to get the planet information, 
-collecting all the different functions into one function.*/
-async function getPlanetInformation(number) {
-  placeClosingX();
-  planets.style.display = "none";
-  getPlanetTitle(number);
+    return data;
+  } catch {
+    console.log("Could not fetch API bodies.");
+  }
 }
 /*Function to fetch the bodies array and to add the title of the planet.
 Also calls the next function to add all the relevant information to the page.*/
 async function getPlanetTitle(number) {
-  let data = await getsSkyBodiesArray();
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-  function does, and to find possible errors.*/
-  title.textContent = data.bodies[number].name;
-  getPlanetLatinName(number, data);
+  try {
+    let data = await getsSkyBodiesArray();
+    /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+    function does, and to find possible errors.*/
+    title.textContent = data.bodies[number].name;
+    getPlanetLatinName(number, data);
+  } catch {
+    console.log("Error, Could not fetch the API bodies.");
+  }
 }
 /*Gets the planets latin name. And calls the next function*/
 function getPlanetLatinName(number, data) {
@@ -140,15 +146,22 @@ function getPlanetLatinName(number, data) {
 function getPlanetDescription(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
+
   planetParagraph.textContent = data.bodies[number].desc;
   planetInfoPage.style.background = planetColors[number];
   getPlanetForInfoPage(number, data);
 }
 /*Get the planets color for the info page display. And calls the next function*/
 function getPlanetForInfoPage(number, data) {
-  planetInfoPage.style.background = planetColors[number];
+  /* theSun.removeEventListener("click", thesunfunc); */
+  /* ${ rgba(planetColors[number], 0.5) }  */
+  /* console.log(planetColors[number]); */
+  planetInfoPage.classList.replace("thesun", "infopageplanet");
+  planetInfoPage.style.background = `rgb(${planetColors[number]})`;
+
   planetInfoPage.style.left = "-1000px";
   planetInfoPage.style.top = "150px";
+
   getExtraPlanetInformation(number, data);
 }
 
@@ -172,7 +185,13 @@ function getPlanetMoons(number, data) {
 
   /*Takes the array of moons an creates a string for display purposes.*/
   let stringOfMoons = data.bodies[number].moons;
-  planetMoons.textContent = stringOfMoons.join(`, `);
+  if (!(stringOfMoons.length === 0)) {
+    planetMoons.textContent = stringOfMoons.join(`, `);
+  } else {
+    console.log(true);
+    planetMoons.innerHTML = "This planet has no moons.";
+  }
+
   /*Sets the display to block so that all the information can be loaded onto the page.*/
   information.style.display = "block";
   createStars();
@@ -205,4 +224,12 @@ function createStars() {
 
     starsInBackground.appendChild(star);
   }
+}
+
+/*Function to get the planet information, 
+collecting all the different functions into one function.*/
+async function getPlanetInformation(number) {
+  placeClosingX();
+  planets.style.display = "none";
+  getPlanetTitle(number);
 }
