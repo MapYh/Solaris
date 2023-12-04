@@ -228,7 +228,14 @@ html {
   background: #c7aa72;
 }
 
-.planets__saturn:hover {
+.planets__combined-saturn {
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.planets__combined-saturn:hover {
   background: linear-gradient(
     311deg,
     rgb(98, 90, 75) 0%,
@@ -237,10 +244,6 @@ html {
   );
   box-shadow: -1px 3px 50px -16px #ffffff;
   transform: translate3d(0px, -2px, 0px);
-}
-
-.planets__combined-saturn {
-  position: relative;
 }
 
 .planets__saturn__ring {
