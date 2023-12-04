@@ -1,6 +1,6 @@
 /*-------Variables---------*/
 /*For the information about the planet.*/
-let title = document.querySelector(".information__title");
+let planetTitle = document.querySelector(".information__title");
 let planetLatinName = document.querySelector(".information__title-two");
 let planetParagraph = document.querySelector(".information__paragraph");
 let planetMoons = document.querySelector(".information__extra--moons");
@@ -14,11 +14,14 @@ let planetInfoPageOuterRing = document.querySelector(".outer");
 /*For the stars in the background of the information page*/
 let starsInBackground = document.querySelector(".stars");
 
+/*The planet div used to hold all the created planets.*/
 let planets = document.querySelector(".planets");
 
+/*Used to show the planet information page.*/
 let information = document.querySelector(".information");
 information.style.display = "none";
 
+/*Class names to be used in the creation of the planet divs.*/
 let planetClassNames = [
   "thesun",
   "planets__mercury",
@@ -30,6 +33,7 @@ let planetClassNames = [
   "planets__uranus",
   "planets__neptune",
 ];
+
 /*Different colors for the planet on the information page.*/
 let planetColors = [
   "#ffd029",
@@ -42,69 +46,23 @@ let planetColors = [
   "#c9d4f1",
   "#7a91a7",
 ];
-/*-------Click events---------*/
-
-/*Click events for all the different planets and the closing x*/
-
-let closeThePage = document.querySelector(".information__close-x");
-closeThePage.addEventListener("click", () => {
-  location.href = "index.html";
-});
-
-/* 
-let theSun = document.querySelector(".thesun");
-theSun.addEventListener("click", () => {
-  getPlanetInformation(0);
-});
-
-let mercury = document.querySelector(".planets__mercury");
-mercury.addEventListener("click", () => {
-  getPlanetInformation(1);
-});
-
-let venus = document.querySelector(".planets__venus");
-venus.addEventListener("click", () => {
-  getPlanetInformation(2);
-});
-
-let earth = document.querySelector(".planets__earth");
-earth.addEventListener("click", () => {
-  getPlanetInformation(3);
-});
-
-let mars = document.querySelector(".planets__mars");
-mars.addEventListener("click", () => {
-  getPlanetInformation(4);
-});
-
-let jupiter = document.querySelector(".planets__jupiter");
-jupiter.addEventListener("click", () => {
-  getPlanetInformation(5);
-});
-
-let saturn = document.querySelector(".planets__saturn");
-saturn.addEventListener("click", () => {
-  getPlanetInformation(6);
-});
-
-let uranus = document.querySelector(".planets__uranus");
-uranus.addEventListener("click", () => {
-  getPlanetInformation(7);
-});
-
-let neptune = document.querySelector(".planets__neptune");
-neptune.addEventListener("click", () => {
-  getPlanetInformation(8);
-}); */
 
 /*-------Functions---------*/
+
+/*Creates the neccesary elements. 
+They need to be created before all the other functions, 
+because the other functions use these elements.*/
 createPlanetElements();
+
+/*Function to create the planet elements.*/
 function createPlanetElements() {
+  /*Creating the elements for the different planets.*/
   for (let i = 0; i < planetClassNames.length; i++) {
     let tempElement = document.createElement("div");
     tempElement.classList.add(planetClassNames[i]);
-    /*Adding the ring to saturn*/
+
     if (i === 6) {
+      /*Adding the ring to saturn*/
       let tempElementSaturn = document.createElement("div");
       let tempElementSaturnRing = document.createElement("div");
       tempElementSaturnRing.classList.add("planets__saturn__ring");
@@ -112,43 +70,32 @@ function createPlanetElements() {
       tempElement.append(tempElementSaturn);
       tempElement.append(tempElementSaturnRing);
     }
+    /*Appending to the main planets div*/
     planets.append(tempElement);
   }
-  addClickEvents();
+  /* addClickEvents(); */
 }
-
-function addClickEvents() {
-  let i = -1;
-  for (const child of planets.children) {
-    console.log(child.className);
-    i++;
-    document
-      .querySelector(`.${child.className}`)
-      .addEventListener("click", () => {
-        getPlanetInformation(i);
-      });
-  }
-}
-
 /*Function to get the planet information, 
 collecting all the different functions into one function.*/
-async function getPlanetInformation(i) {
+async function getPlanetInformation(number) {
   placeClosingX();
   planets.style.display = "none";
-  createPlanetInformation(i);
+  createPlanetInformation(number);
 }
 
 /*Function to fetch the bodies array and to add the information about the planet like, name, name in latin, 
 text paragraph, and circumference, distance from sun, temperature at night and in the day.
 Also calls the next function to add all the relevant information to the page.*/
 async function createPlanetInformation(number) {
+  /*Gets the body array*/
   let data = await getsSkyBodiesArray();
-
-  title.textContent = data.bodies[number].name;
+  /*Adds title, latin name, describition of planet.*/
+  planetTitle.textContent = data.bodies[number].name;
   planetLatinName.textContent = data.bodies[number].latinName;
 
   planetParagraph.textContent = data.bodies[number].desc;
 
+  /*extra info like circumnference, distance from the sun, temp during they day and night.*/
   extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
   extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
   extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
@@ -260,3 +207,59 @@ function createStars() {
     starsInBackground.appendChild(star);
   }
 }
+
+/*-------Click events---------*/
+
+/*Click events for all the different planets and the closing x*/
+
+/* To change pages when clicking on the x in information page. */
+let closeThePage = document.querySelector(".information__close-x");
+closeThePage.addEventListener("click", () => {
+  location.href = "index.html";
+});
+
+let theSun = document.querySelector(".thesun");
+theSun.addEventListener("click", () => {
+  getPlanetInformation(0);
+});
+
+let mercury = document.querySelector(".planets__mercury");
+mercury.addEventListener("click", () => {
+  getPlanetInformation(1);
+});
+
+let venus = document.querySelector(".planets__venus");
+venus.addEventListener("click", () => {
+  getPlanetInformation(2);
+});
+
+let earth = document.querySelector(".planets__earth");
+earth.addEventListener("click", () => {
+  getPlanetInformation(3);
+});
+
+let mars = document.querySelector(".planets__mars");
+mars.addEventListener("click", () => {
+  getPlanetInformation(4);
+});
+
+let jupiter = document.querySelector(".planets__jupiter");
+jupiter.addEventListener("click", () => {
+  getPlanetInformation(5);
+});
+
+let saturn = document.querySelector(".planets__saturn");
+saturn.addEventListener("click", () => {
+  getPlanetInformation(6);
+});
+
+let uranus = document.querySelector(".planets__uranus");
+uranus.addEventListener("click", () => {
+  getPlanetInformation(7);
+});
+
+let neptune = document.querySelector(".planets__neptune");
+neptune.addEventListener("click", () => {
+  getPlanetInformation(8);
+});
+/*-------------------------------------------------------*/
