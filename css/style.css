@@ -72,6 +72,25 @@ html {
   color: #ffd029;
 }
 
+/*-----Rings for information planet--------*/
+
+.outer {
+  display: none;
+  background-color: #0c164d;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.innerring {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  border: 80px solid rgb(15, 21, 85);
+  border-radius: 50%;
+}
+
 /*-----Planets--------*/
 
 .planets {
@@ -95,23 +114,6 @@ html {
   position: absolute;
   left: -900px;
   top: -5px;
-}
-
-.outer {
-  display: none;
-  background-color: #0c164d;
-  position: absolute;
-  border-radius: 50%;
-}
-
-.innerring {
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  position: absolute;
-  border: 80px solid rgb(15, 21, 85);
-  border-radius: 50%;
 }
 
 .thesun:hover {

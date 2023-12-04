@@ -1,5 +1,5 @@
 /*-------Variables---------*/
-let closingx = document.querySelector(".information__close-x");
+/*For the information about the planet.*/
 let title = document.querySelector(".information__title");
 let planetLatinName = document.querySelector(".information__title-two");
 let planetParagraph = document.querySelector(".information__paragraph");
@@ -7,15 +7,41 @@ let planetMoons = document.querySelector(".information__extra--moons");
 let extraPlanetInformation = document.querySelectorAll(
   ".information__extra-value"
 );
-let planetrings = document.querySelector(".outer");
-let starsInBackground = document.querySelector(".stars");
-let planets = document.querySelector(".planets");
+/*For the rings on the information page.*/
 let planetInfoPage = document.querySelector(".innerring");
 let planetInfoPageOuterRing = document.querySelector(".outer");
+
+/*For the stars in the background of the information page*/
+let starsInBackground = document.querySelector(".stars");
+
+let planets = document.querySelector(".planets");
 
 let information = document.querySelector(".information");
 information.style.display = "none";
 
+let planetClassNames = [
+  "thesun",
+  "planets__mercury",
+  "planets__venus",
+  "planets__earth",
+  "planets__mars",
+  "planets__jupiter",
+  "planets__combined-saturn",
+  "planets__uranus",
+  "planets__neptune",
+];
+/*Different colors for the planet on the information page.*/
+let planetColors = [
+  "#ffd029",
+  "#7a91a7",
+  "#e7cdcd",
+  "#428ed4",
+  "#ef5f5f",
+  "#e29468",
+  "#c7aa72",
+  "#c9d4f1",
+  "#7a91a7",
+];
 /*-------Click events---------*/
 
 /*Click events for all the different planets and the closing x*/
@@ -25,6 +51,7 @@ closeThePage.addEventListener("click", () => {
   location.href = "index.html";
 });
 
+/* 
 let theSun = document.querySelector(".thesun");
 theSun.addEventListener("click", () => {
   getPlanetInformation(0);
@@ -66,23 +93,69 @@ uranus.addEventListener("click", () => {
 });
 
 let neptune = document.querySelector(".planets__neptune");
-neptune.addEventListener("click", (e) => {
+neptune.addEventListener("click", () => {
   getPlanetInformation(8);
-});
-
-let planetColors = [
-  "#ffd029",
-  "#7a91a7",
-  "#e7cdcd",
-  "#428ed4",
-  "#ef5f5f",
-  "#e29468",
-  "#c7aa72",
-  "#c9d4f1",
-  "#7a91a7",
-];
+}); */
 
 /*-------Functions---------*/
+createPlanetElements();
+function createPlanetElements() {
+  for (let i = 0; i < planetClassNames.length; i++) {
+    let tempElement = document.createElement("div");
+    tempElement.classList.add(planetClassNames[i]);
+    /*Adding the ring to saturn*/
+    if (i === 6) {
+      let tempElementSaturn = document.createElement("div");
+      let tempElementSaturnRing = document.createElement("div");
+      tempElementSaturnRing.classList.add("planets__saturn__ring");
+      tempElementSaturn.classList.add("planets__saturn");
+      tempElement.append(tempElementSaturn);
+      tempElement.append(tempElementSaturnRing);
+    }
+    planets.append(tempElement);
+  }
+  addClickEvents();
+}
+
+function addClickEvents() {
+  let i = -1;
+  for (const child of planets.children) {
+    console.log(child.className);
+    i++;
+    document
+      .querySelector(`.${child.className}`)
+      .addEventListener("click", () => {
+        getPlanetInformation(i);
+      });
+  }
+}
+
+/*Function to get the planet information, 
+collecting all the different functions into one function.*/
+async function getPlanetInformation(i) {
+  placeClosingX();
+  planets.style.display = "none";
+  createPlanetInformation(i);
+}
+
+/*Function to fetch the bodies array and to add the information about the planet like, name, name in latin, 
+text paragraph, and circumference, distance from sun, temperature at night and in the day.
+Also calls the next function to add all the relevant information to the page.*/
+async function createPlanetInformation(number) {
+  let data = await getsSkyBodiesArray();
+
+  title.textContent = data.bodies[number].name;
+  planetLatinName.textContent = data.bodies[number].latinName;
+
+  planetParagraph.textContent = data.bodies[number].desc;
+
+  extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
+  extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
+  extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
+  extraPlanetInformation[3].textContent = `${data.bodies[number].temp.night}C`;
+
+  getPlanetForInfoPage(number, data);
+}
 
 /*Gets the api key*/
 async function getKeys() {
@@ -126,55 +199,21 @@ async function getsSkyBodiesArray() {
     console.log("Could not fetch API bodies.");
   }
 }
-/*Function to fetch the bodies array and to add the title of the planet.
-Also calls the next function to add all the relevant information to the page.*/
-async function getPlanetTitle(number) {
-  let data = await getsSkyBodiesArray();
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-    function does, and to find possible errors.*/
-  title.textContent = data.bodies[number].name;
-  getPlanetLatinName(number, data);
-}
-/*Gets the planets latin name. And calls the next function*/
-function getPlanetLatinName(number, data) {
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-  function does, and to find possible errors.*/
-  planetLatinName.textContent = data.bodies[number].latinName;
-  getPlanetDescription(number, data);
-}
-/*Gets the planets description. And calls the next function*/
-function getPlanetDescription(number, data) {
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-  function does, and to find possible errors.*/
 
-  planetParagraph.textContent = data.bodies[number].desc;
-  getPlanetForInfoPage(number, data);
-}
 /*Get the planets color for the info page display. And calls the next function*/
 function getPlanetForInfoPage(number, data) {
-  planetrings.style.display = "block";
+  planetInfoPageOuterRing.style.display = "block";
+  /*Color for the planet that was clicked on.*/
   planetInfoPage.style.background = planetColors[number];
 
+  /*Positioning for the outer ring.*/
   planetInfoPageOuterRing.style.left = "-600px";
   planetInfoPageOuterRing.style.top = "220px";
   planetInfoPageOuterRing.style.width = "900px";
   planetInfoPageOuterRing.style.height = "900px";
-  getExtraPlanetInformation(number, data);
-}
-
-/*Gets the planets extra information, ass, circumference, 
-distance, temp in the day and temp in the night.*/
-function getExtraPlanetInformation(number, data) {
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-  function does, and to find possible errors.*/
-
-  extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
-  extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
-  extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
-  extraPlanetInformation[3].textContent = `${data.bodies[number].temp.night}C`;
-
   getPlanetMoons(number, data);
 }
+
 /*Gets the planets moon names.*/
 function getPlanetMoons(number, data) {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
@@ -196,36 +235,28 @@ function getPlanetMoons(number, data) {
 function placeClosingX() {
   /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
   function does, and to find possible errors.*/
-  closingx.textContent = "x";
+  closeThePage.textContent = "x";
 }
 
 //Creates all the background stars.
 function createStars() {
   for (let i = 0; i < 200; i++) {
-    //Creating the element for each star.
+    /*  Creating the element for each star. */
     const star = document.createElement("div");
-    //Adding styling for each star.
+    /* Adding styling for each star. */
     star.className = "star-template";
 
-    //Adding random positoning to the star.
+    /* Adding random positoning to the star. */
     star.style.left = `${Math.floor(Math.random() * 100)}%`;
     star.style.top = `${Math.floor(Math.random() * 100)}%`;
 
-    //adding random size to the star.
+    /*  adding random size to the star. */
     star.style.width = `${Math.floor(Math.random() * 10)}px`;
     star.style.height = `${Math.floor(Math.random() * 10)}px`;
 
-    //Random animation delay to the star.
+    /* Random animation delay to the star. */
     star.style.animationDelay = `${Math.floor(Math.random() * 10)}s`;
 
     starsInBackground.appendChild(star);
   }
-}
-
-/*Function to get the planet information, 
-collecting all the different functions into one function.*/
-async function getPlanetInformation(number) {
-  placeClosingX();
-  planets.style.display = "none";
-  getPlanetTitle(number);
 }
