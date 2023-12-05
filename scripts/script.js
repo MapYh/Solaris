@@ -83,8 +83,11 @@ async function getPlanetInformation(number) {
   planets.style.display = "none";
   addPlanetInformation(number);
 }
+
 /*Gets the api key*/
 async function getApiKeys() {
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
   try {
     let basekeys = await fetch(
       "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
@@ -101,7 +104,10 @@ async function getApiKeys() {
 }
 /* Gets the array for all the planets, and calls getKeys function to get the api key. */
 async function getsSkyBodiesArray() {
-  /*Uses the getKeys function and g*/
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+
+  /*Uses the getApiKeys function*/
   try {
     let resp = await fetch(
       "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
@@ -130,7 +136,6 @@ async function addPlanetInformation(number) {
   /*Adds title, latin name, describition of planet.*/
   planetTitle.textContent = data.bodies[number].name;
   planetLatinName.textContent = data.bodies[number].latinName;
-
   planetParagraph.textContent = data.bodies[number].desc;
 
   /*extra info like circumnference, distance from the sun, temp during they day and night.*/
@@ -177,12 +182,6 @@ function getPlanetMoons(number, data) {
   information.style.display = "block";
   createStars();
 }
-/*Adds the closing x to the page.*/
-function placeClosingX() {
-  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
-  function does, and to find possible errors.*/
-  closeThePage.textContent = "x";
-}
 
 //Creates all the background stars.
 function createStars() {
@@ -207,6 +206,13 @@ function createStars() {
 
     starsInBackground.appendChild(star);
   }
+}
+
+/*Adds the closing x to the page.*/
+function placeClosingX() {
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+  closeThePage.textContent = "x";
 }
 
 /*-------Click events---------*/
