@@ -1,5 +1,5 @@
 /*-------Variables---------*/
-/*For the information about the planet.*/
+/*Variables for the information about the planet.*/
 let planetTitle = document.querySelector(".information__title");
 let planetLatinName = document.querySelector(".information__title-two");
 let planetParagraph = document.querySelector(".information__paragraph");
@@ -75,42 +75,16 @@ function createPlanetElements() {
   }
   /* addClickEvents(); */
 }
+
 /*Function to get the planet information, 
 collecting all the different functions into one function.*/
 async function getPlanetInformation(number) {
   placeClosingX();
   planets.style.display = "none";
-  createPlanetInformation(number);
+  addPlanetInformation(number);
 }
-
-/*Function to fetch the bodies array and to add the information about the planet like, name, name in latin, 
-text paragraph, and circumference, distance from sun, temperature at night and in the day.
-Also calls the next function to add all the relevant information to the page.*/
-async function createPlanetInformation(number) {
-  /*Gets the body array*/
-  let data = await getsSkyBodiesArray();
-  /*Adds title, latin name, describition of planet.*/
-  planetTitle.textContent = data.bodies[number].name;
-  planetLatinName.textContent = data.bodies[number].latinName;
-
-  planetParagraph.textContent = data.bodies[number].desc;
-
-  /*extra info like circumnference, distance from the sun, temp during they day and night.*/
-  extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
-  extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
-  extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
-  extraPlanetInformation[3].textContent = `${data.bodies[number].temp.night}C`;
-
-  getPlanetForInfoPage(number, data);
-}
-
 /*Gets the api key*/
-async function getKeys() {
-  /*
-  Created a function to avoid repeating code. 
-  There would be a fetch to get the key 
-  every time i need to use the api.
-  */
+async function getApiKeys() {
   try {
     let basekeys = await fetch(
       "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
@@ -134,7 +108,7 @@ async function getsSkyBodiesArray() {
       {
         method: `GET`,
         headers: {
-          "x-zocom": `${await getKeys()}`,
+          "x-zocom": `${await getApiKeys()}`,
         },
       }
     );
@@ -147,8 +121,33 @@ async function getsSkyBodiesArray() {
   }
 }
 
+/*Function to fetch the bodies array and to add the information about the planet like, name, name in latin, 
+text paragraph, and circumference, distance from sun, temperature at night and in the day.
+Also calls the next function to add all the relevant information to the page.*/
+async function addPlanetInformation(number) {
+  /*Gets the body array*/
+  let data = await getsSkyBodiesArray();
+  /*Adds title, latin name, describition of planet.*/
+  planetTitle.textContent = data.bodies[number].name;
+  planetLatinName.textContent = data.bodies[number].latinName;
+
+  planetParagraph.textContent = data.bodies[number].desc;
+
+  /*extra info like circumnference, distance from the sun, temp during they day and night.*/
+  extraPlanetInformation[0].textContent = `${data.bodies[number].circumference} KM`;
+  extraPlanetInformation[1].textContent = `${data.bodies[number].distance} KM`;
+  extraPlanetInformation[2].textContent = `${data.bodies[number].temp.day}C`;
+  extraPlanetInformation[3].textContent = `${data.bodies[number].temp.night}C`;
+
+  getPlanetForInfoPage(number, data);
+}
+
 /*Get the planets color for the info page display. And calls the next function*/
 function getPlanetForInfoPage(number, data) {
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
+
+  /*To render the planet on the page.*/
   planetInfoPageOuterRing.style.display = "block";
   /*Color for the planet that was clicked on.*/
   planetInfoPage.style.background = planetColors[number];
@@ -187,6 +186,8 @@ function placeClosingX() {
 
 //Creates all the background stars.
 function createStars() {
+  /*The reson for dividing up the code in different functions is so that it is easier to understad what every 
+  function does, and to find possible errors.*/
   for (let i = 0; i < 200; i++) {
     /*  Creating the element for each star. */
     const star = document.createElement("div");

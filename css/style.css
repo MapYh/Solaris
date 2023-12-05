@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-html {
+body {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, #0c164d 0%, #190b22 100%);
@@ -17,19 +17,19 @@ html {
 .star-template {
   position: absolute;
   border-radius: 50%;
-  z-index: -5;
+  z-index: -1;
   background: #ffffff;
   opacity: 0.3;
   filter: blur(2px);
   animation: fade-in-out 7.5s infinite alternate;
 }
 
-.wrapper {
-  min-width: 1300px;
+.information-wrapper {
+  min-width: 1500px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 0;
 }
 
 /*-----Titles--------*/
@@ -94,13 +94,10 @@ html {
 /*-----Planets--------*/
 
 .planets {
-  color: white;
   display: flex;
-  justify-content: space-between;
-  align-self: end;
+  justify-content: space-around;
   align-items: center;
-  width: 65dvw;
-  margin: 4rem;
+  width: 80dvw;
   height: 65dvh;
 }
 
@@ -108,12 +105,11 @@ html {
   background: #ffd029;
   border-radius: 50%;
   display: inline-block;
-  width: 100dvh;
-  height: 100dvh;
+  width: 1000px;
+  height: 1300px;
   box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
   position: absolute;
   left: -900px;
-  top: -5px;
 }
 
 .thesun:hover {
@@ -449,7 +445,7 @@ html {
 }
 
 /*-----Media queries--------*/
-
+/* 
 @media only screen and (max-width: 1200px) {
   .planets {
     width: 10dvw;
@@ -457,7 +453,7 @@ html {
     align-items: center;
     align-self: center;
   }
-}
+} */
 
 /*----- Animations --------*/
 
